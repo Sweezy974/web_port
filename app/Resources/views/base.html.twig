@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>{% block title %}Welcome!{% endblock %}</title>
+  <title>{% block title %} ThePurist | Developpeur Web{% endblock %}</title>
   {% block stylesheets %}{% endblock %}
   <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
 <link href="{{ asset('media/style/css/main.css') }}" rel="stylesheet">
@@ -20,16 +20,16 @@
     </a>
     <ul align="center" class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('admin_training_index')}}">Parcours</a>
+        <a class="nav-link" href="{{ path('show_training')}}">Parcours</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="{{ path('admin_production_index')}}">Réalisations</a>
+        <a class="nav-link" href="{{ path('show_productions')}}">Réalisations</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="{{ path('admin_skill_index')}}">Compétences</a>
+        <a class="nav-link" href="{{ path('show_skills')}}">Compétences</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="z">Contact</a>
+        <a class="nav-link" href="{{ path('show_contact')}}">Contact</a>
       </li>
       {% if is_granted("ROLE_USER") %}
       <li class="nav-item">

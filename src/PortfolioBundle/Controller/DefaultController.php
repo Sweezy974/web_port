@@ -22,4 +22,43 @@ class DefaultController extends Controller
 
 
     }
+    /**
+    * @Route("/competences",name="show_skills")
+    */
+    public function showSkills()
+    {
+        // si l'utilisateur est connecté
+        $securityContext = $this->container->get('security.authorization_checker');
+        return $this->render('@PortfolioBundle/Resources/views/default/skills.html.twig', array());
+    }
+
+    /**
+    * @Route("/realisations",name="show_productions")
+    */
+    public function showProductions()
+    {
+        // si l'utilisateur est connecté
+        $securityContext = $this->container->get('security.authorization_checker');
+        return $this->render('@PortfolioBundle/Resources/views/default/productions.html.twig', array());
+    }
+
+    /**
+    * @Route("/parcours",name="show_training")
+    */
+    public function showTraining()
+    {
+        // si l'utilisateur est connecté
+        $securityContext = $this->container->get('security.authorization_checker');
+        return $this->render('@PortfolioBundle/Resources/views/default/training.html.twig', array());
+    }
+
+    /**
+    * @Route("/parcours",name="show_contact")
+    */
+    public function showContact()
+    {
+        // si l'utilisateur est connecté
+        $securityContext = $this->container->get('security.authorization_checker');
+        return $this->render('@PortfolioBundle/Resources/views/default/contact.html.twig', array());
+    }
 }
