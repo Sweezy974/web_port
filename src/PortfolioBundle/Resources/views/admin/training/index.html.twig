@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Trainings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Structure</th>
+                <th>Begindate</th>
+                <th>Enddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for training in trainings %}
+            <tr>
+                <td><a href="{{ path('training_show', { 'id': training.id }) }}">{{ training.id }}</a></td>
+                <td>{{ training.name }}</td>
+                <td>{{ training.structure }}</td>
+                <td>{% if training.beginDate %}{{ training.beginDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if training.endDate %}{{ training.endDate|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_training_show', { 'id': training.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_training_edit', { 'id': training.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_training_new') }}">Create a new training</a>
+        </li>
+    </ul>
+{% endblock %}

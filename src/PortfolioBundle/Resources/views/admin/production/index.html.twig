@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Productions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Begindate</th>
+                <th>Enddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for production in productions %}
+            <tr>
+                <td><a href="{{ path('admin_production_show', { 'id': production.id }) }}">{{ production.id }}</a></td>
+                <td>{{ production.name }}</td>
+                <td>{{ production.description }}</td>
+                <td>{% if production.beginDate %}{{ production.beginDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if production.endDate %}{{ production.endDate|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_production_show', { 'id': production.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_production_edit', { 'id': production.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_production_new') }}">Create a new production</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Profiles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birthdate</th>
+                <th>Mail</th>
+                <th>Mail2</th>
+                <th>Localphonenumber</th>
+                <th>Delocalizedphonenumber</th>
+                <th>Description</th>
+                <th>Profession</th>
+                <th>Avatar</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for profile in profiles %}
+            <tr>
+                <td><a href="{{ path('profile_show', { 'id': profile.id }) }}">{{ profile.id }}</a></td>
+                <td>{{ profile.firstName }}</td>
+                <td>{{ profile.lastName }}</td>
+                <td>{% if profile.birthDate %}{{ profile.birthDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ profile.mail }}</td>
+                <td>{{ profile.mail2 }}</td>
+                <td>{{ profile.localPhoneNumber }}</td>
+                <td>{{ profile.delocalizedPhoneNumber }}</td>
+                <td>{{ profile.description }}</td>
+                <td>{{ profile.profession }}</td>
+                <td>{{ profile.avatar }}</td>
+                <td>{% if profile.updatedAt %}{{ profile.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_profile_show', { 'id': profile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_profile_edit', { 'id': profile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('profile_new') }}">Create a new profile</a>
+        </li>
+    </ul>
+{% endblock %}

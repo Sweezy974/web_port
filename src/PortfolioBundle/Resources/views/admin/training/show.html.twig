@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Training</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ training.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ training.name }}</td>
+            </tr>
+            <tr>
+                <th>Structure</th>
+                <td>{{ training.structure }}</td>
+            </tr>
+            <tr>
+                <th>Begindate</th>
+                <td>{% if training.beginDate %}{{ training.beginDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{% if training.endDate %}{{ training.endDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_training_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_training_edit', { 'id': training.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

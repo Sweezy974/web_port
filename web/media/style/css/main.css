@@ -1,0 +1,119 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+a a:hover{
+  text-decoration: none;
+}
+
+.clearHeader {
+  height:50px;
+  background:lightblue;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+
+  -webkit-transition: background 2s; /* For Safari 3.1 to 6.0 */
+  transition: background 2s;
+}
+
+.clearHeader.darkHeader {
+ background:#000;
+}
+.scroll-downs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 20em auto auto auto;
+
+  width :34px;
+  height: 55px;
+}
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  opacity: 0.75;
+  box-sizing: content-box;
+}
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation-name: scroll;
+  animation-duration: 2.2s;
+  animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+  animation-iteration-count: infinite;
+}
+@keyframes scroll {
+  0% { opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0;}
+}
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("http://getwallpapers.com/wallpaper/full/d/8/0/90079.jpg");
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  min-height: 400px;
+  background-image: url("https://i.kinja-img.com/gawker-media/image/upload/t_original/vejbo0iu0dbx82n9puzb.png");
+}
+
+.bgimg-3 {
+  background-image: url("http://www.dream-wallpaper.com/free-wallpaper/art-wallpaper/minimalist-design-2-wallpaper/1920x1200/free-wallpaper-14.jpg");
+  min-height: 400px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+.typewrite{
+  color: white;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
