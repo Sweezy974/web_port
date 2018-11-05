@@ -20,9 +20,10 @@ class AdminController extends Controller
     $admin = $this->getUser();
     $admin->getId();
     $em = $this->getDoctrine()->getManager();
+    // $trainings = $em->getRepository('PortfolioBundle:Training')->findAll();
     $profile = $em->getRepository('PortfolioBundle:Profile')->findOneby(array('admin'=>$admin));
-    $skill = $em->getRepository('PortfolioBundle:Skill')->findby(array('admin'=>$admin),array('id' => 'desc'));
-    $training = $em->getRepository('PortfolioBundle:Training')->findby(array('admin'=>$admin),array('id' => 'desc'));
+    $skill = $em->getRepository('PortfolioBundle:Skill')->findAll();
+    $training = $em->getRepository('PortfolioBundle:Training')->findAll();
     return $this->render('@PortfolioBundle/Resources/views/admin/index.html.twig', array(
       'profile' => $profile,
       'skill' => $skill,

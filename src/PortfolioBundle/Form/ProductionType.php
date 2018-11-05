@@ -13,7 +13,12 @@ class ProductionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('beginDate')->add('endDate')->add('admin');
+        $builder
+        ->add('name')
+        ->add('description')
+        ->add('beginDate')
+        ->add('endDate');
+        // ->add('admin');
     }/**
      * {@inheritdoc}
      */

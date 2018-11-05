@@ -5,39 +5,39 @@
   <title>{% block title %}Welcome!{% endblock %}</title>
   {% block stylesheets %}{% endblock %}
   <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> -->
+<link href="{{ asset('media/style/css/main.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="media/style/css/main.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
 <body>
   <!-- Image and text -->
-  <nav id="global-nav" class="nav navbar navbar-light bg-light justify-content-center fixed-top the-blur">
+  <nav id="global-nav" class="nav navbar navbar-light bg-dark justify-content-center fixed-top the-blur">
     <a class="navbar-brand" href="#">
       <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
       ThePurist
     </a>
-    <ul class="nav justify-content-center">
+    <ul align="center" class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" href="{{ path('admin_training_index')}}">Parcours</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link" href="{{ path('admin_production_index')}}">Réalisations</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+      <li class="nav-item ">
+        <a class="nav-link" href="{{ path('admin_skill_index')}}">Compétences</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="z">Contact</a>
       </li>
       {% if is_granted("ROLE_USER") %}
-      <li class="nav-item bg-danger">
-        <a class="nav-link" style="color:white;" href="#">Admin</a>
+      <li class="nav-item">
+        <a class="nav-link" style="color:red;" href="{{ path('admin_index')}}">Admin</a>
       </li>
       {% endif %}
     </ul>
   </nav>
-  <header class="clearHeader">
-</header>
-
   {% block body %}
   {% endblock %}
 

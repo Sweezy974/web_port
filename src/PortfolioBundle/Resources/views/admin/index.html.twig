@@ -3,8 +3,116 @@
 
 
 <div class="container">
-  <div class="col">
-    <h3>Dashboard</h3>
+  <div class="row">
+    <div class="col d-flex  justify-content-center">
+      <h3>Dashboard</h3>
+    </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <h4>Mon profil</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">Nom</div>
+    <div class="col">{{ profile.lastName }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">Prénom  </div>
+    <div class="col">{{ profile.firstName }}</div>
+  </div>
+
+
+  <div class="row">
+    <div class="col">Age</div>
+    <div class="col">{% if profile.birthDate %}{{ profile.birthDate|date('Y-m-d H:i:s') }}{% endif %}</div>
+  </div>
+  <div class="row">
+    <div class="col">Email</div>
+    <div class="col">{{ profile.mail }}</div>
+  </div>
+  <div class="row">
+    <div class="col">Email 2</div>
+    <div class="col">{{ profile.mail2 }}</div>
+  </div>
+  <div class="row">
+    <div class="col">N° de tel </div>
+    <div class="col">{{ profile.localPhoneNumber }}</div>
+  </div>
+  <div class="row">
+    <div class="col">N° de tel 2</div>
+    <div class="col">{{ profile.delocalizedPhoneNumber }}</div>
+  </div>
+  <div class="row">
+    <div class="col">Bio </div>
+    <div class="col">{{ profile.description }}</div>
+  </div>
+  <div class="row">
+    <div class="col">Profession</div>
+    <div class="col">{{ profile.profession }}</div>
+  </div>
+  <div class="row">
+    <div class="col">Avatar</div>
+    <div class="col">{{ profile.avatar }}</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <h4>Mes Compétences</h4>
+    </div>
+  </div>
+  <div class="row"  style="height:40px;">
+    <div class="col">
+      Nom
+    </div>
+    <div class="col">
+      Description
+    </div>
+    <div class="col">
+      Note
+    </div>
+    <div class="col">
+      Action
+    </div>
+  </div>
+
+  {% for skill in skill %}
+
+  <div class="row" style="border-bottom:1px solid grey;">
+    <div class="col">
+      {{ skill.name }}
+    </div>
+    <div class="col">
+      {{ skill.description }}
+    </div>
+    <div class="col">
+      {% if skill.rating == 5 %}
+      <a href="#!" class="secondary-content"><i class="yellow-text material-icons left">grade</i>{{skill.rating}} / 5</a>
+      {% elseif skill.rating == 4 %}
+      <a href="#!" class="secondary-content"><i class="blue-text material-icons left">grade</i>{{skill.rating}} / 5</a>
+      {% elseif skill.rating == 3 %}
+      <a href="#!" class="secondary-content"><i class="green-text material-icons left">grade</i>{{skill.rating}} / 5</a>
+      {% elseif skill.rating == 2 %}
+      <a href="#!" class="secondary-content"><i class="orange-text material-icons left">grade</i>{{skill.rating}} / 5</a>
+      {% elseif skill.rating == 1 %}
+      <a href="#!" class="secondary-content"><i class="red-text material-icons left">grade</i>{{skill.rating}} / 5</a>
+      {% else %}
+      <p>rating non valide</p>
+      {% endif %}
+    </div>
+    <div class="col">
+      <a href="{{ path('admin_skill_edit', { 'id': skill.id }) }}">Edit</a>
+    </div>
+  </div>
+{% endfor %}
+
+<br>
+<div class="row">
+  <div class="col">
+    <h4>Mon parcours</h4>
+  </div>
+</div>
 </div>
 {% endblock %}

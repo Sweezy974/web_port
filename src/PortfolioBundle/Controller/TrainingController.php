@@ -52,7 +52,7 @@ class TrainingController extends Controller
             $em->persist($training);
             $em->flush();
 
-            return $this->redirectToRoute('training_show', array('id' => $training->getId()));
+            return $this->redirectToRoute('admin_training_show', array('id' => $training->getId()));
         }
 
         return $this->render('@PortfolioBundle/Resources/views/admin/training/new.html.twig', array(
@@ -80,7 +80,7 @@ class TrainingController extends Controller
     /**
      * Displays a form to edit an existing training entity.
      *
-     * @Route("/{id}/edit", name="training_edit")
+     * @Route("/{id}/edit", name="admin_training_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Training $training)
@@ -92,10 +92,10 @@ class TrainingController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('training_edit', array('id' => $training->getId()));
+            return $this->redirectToRoute('admin_training_edit', array('id' => $training->getId()));
         }
 
-        return $this->render('training/edit.html.twig', array(
+        return $this->render('@PortfolioBundle/Resources/views/admin/training/edit.html.twig', array(
             'training' => $training,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -105,7 +105,7 @@ class TrainingController extends Controller
     /**
      * Deletes a training entity.
      *
-     * @Route("/{id}", name="admin_training_delete")
+     * @Route("/{id}/delete", name="admin_training_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Training $training)
@@ -119,7 +119,7 @@ class TrainingController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('training_index');
+        return $this->redirectToRoute('admin_training_index');
     }
 
     /**
@@ -132,7 +132,7 @@ class TrainingController extends Controller
     private function createDeleteForm(Training $training)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('training_delete', array('id' => $training->getId())))
+            ->setAction($this->generateUrl('admin_training_delete', array('id' => $training->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

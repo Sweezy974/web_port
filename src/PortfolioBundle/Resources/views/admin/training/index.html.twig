@@ -1,23 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Trainings list</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Trainings list</h1>
+        </div>
+    </div>
+
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Structure</th>
-                <th>Begindate</th>
-                <th>Enddate</th>
+                <th>Nom</th>
+                <th>Etablissement</th>
+                <th>Début</th>
+                <th>Fin</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for training in trainings %}
-            <tr>
-                <td><a href="{{ path('training_show', { 'id': training.id }) }}">{{ training.id }}</a></td>
+            <tr style="border-bottom:1px solid grey;">
+                <td><a href="{{ path('admin_training_show', { 'id': training.id }) }}">{{ training.id }}</a></td>
                 <td>{{ training.name }}</td>
                 <td>{{ training.structure }}</td>
                 <td>{% if training.beginDate %}{{ training.beginDate|date('Y-m-d') }}{% endif %}</td>
@@ -29,6 +35,9 @@
                         </li>
                         <li>
                             <a href="{{ path('admin_training_edit', { 'id': training.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_training_delete', { 'id': training.id }) }}">delete</a>
                         </li>
                     </ul>
                 </td>
@@ -42,4 +51,5 @@
             <a href="{{ path('admin_training_new') }}">Create a new training</a>
         </li>
     </ul>
+</div>
 {% endblock %}

@@ -52,7 +52,7 @@ class SkillController extends Controller
             $em->persist($skill);
             $em->flush();
 
-            return $this->redirectToRoute('skill_show', array('id' => $skill->getId()));
+            return $this->redirectToRoute('admin_skill_show', array('id' => $skill->getId()));
         }
 
         return $this->render('@PortfolioBundle/Resources/views/admin/skill/new.html.twig', array(
@@ -92,7 +92,7 @@ class SkillController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('skill_edit', array('id' => $skill->getId()));
+            return $this->redirectToRoute('admin_skill_edit', array('id' => $skill->getId()));
         }
 
         return $this->render('@PortfolioBundle/Resources/views/admin/skill/edit.html.twig', array(
@@ -119,7 +119,7 @@ class SkillController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('skill_index');
+        return $this->redirectToRoute('admin_skill_index');
     }
 
     /**
@@ -132,7 +132,7 @@ class SkillController extends Controller
     private function createDeleteForm(Skill $skill)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('skill_delete', array('id' => $skill->getId())))
+            ->setAction($this->generateUrl('admin_skill_delete', array('id' => $skill->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
