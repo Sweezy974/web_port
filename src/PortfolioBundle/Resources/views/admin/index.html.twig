@@ -8,45 +8,60 @@
       <h3>Dashboard</h3>
     </div>
   </div>
+  <br>
   <div class="row">
-    <div class="col">
+    <div class="col-12 d-flex justify-content-center">
       <h4>Mon profil</h4>
     </div>
   </div>
   <div class="row">
-    <div class="col">Nom</div>
+    <div class="col-3 offset-3">Nom</div>
     <div class="col">{{ profile.lastName }}
     </div>
   </div>
 
   <div class="row">
-    <div class="col">Prénom  </div>
+    <div class="col-3 offset-3">Prénom  </div>
     <div class="col">{{ profile.firstName }}</div>
   </div>
 
 
   <div class="row">
-    <div class="col">Age</div>
+    <div class="col-3 offset-3">Age</div>
     <div class="col">{% if profile.birthDate %}{{ profile.birthDate|date('Y-m-d H:i:s') }}{% endif %}</div>
   </div>
+  <br>
   <div class="row">
-    <div class="col">Email</div>
+    <div class="col-3 offset-3">Adresse</div>
+    <div class="col">{{ profile.address }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3 offset-3">Code Postal</div>
+    <div class="col">{{ profile.zipcode }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3 offset-3">city</div>
+    <div class="col">{{ profile.city }}</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3 offset-3">Email</div>
     <div class="col">{{ profile.mail }}</div>
   </div>
   <div class="row">
-    <div class="col">Email 2</div>
+    <div class="col-3 offset-3">Email 2</div>
     <div class="col">{{ profile.mail2 }}</div>
   </div>
   <div class="row">
-    <div class="col">N° de tel </div>
+    <div class="col-3 offset-3">N° de tel </div>
     <div class="col">{{ profile.localPhoneNumber }}</div>
   </div>
   <div class="row">
-    <div class="col">N° de tel 2</div>
+    <div class="col-3 offset-3">N° de tel 2</div>
     <div class="col">{{ profile.delocalizedPhoneNumber }}</div>
   </div>
   <div class="row">
-    <div class="col">Bio </div>
+    <div class="col-3 offset-3">Bio </div>
     <div class="col">{{ profile.description }}</div>
   </div>
   <div class="row">
@@ -76,46 +91,140 @@
     </div>
     <div class="col font-weight-bold">
       Action </div>
+    </div>
+
+    {% for skill in skill %}
+
+    <div class="row">
+      <div class="col">
+        {{ skill.name }}
+      </div>
+      <div class="col">
+        {{ skill.description }}
+      </div>
+      <div class="col">
+
+        {% if skill.rating == 5 %}
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        {% elseif skill.rating == 4 %}
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        {% elseif skill.rating == 3 %}
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        {% elseif skill.rating == 2 %}
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        {% elseif skill.rating == 1 %}
+        <a href="#!" class="secondary-content"><i class="material-icons left" style="color:darkorange;">grade</i></a>
+        {% else %}
+        <p>rating non valide</p>
+        {% endif %}
+      </div>
+      <div class="col">
+        <a href="{{ path('admin_skill_edit', { 'id': skill.id }) }}">Edit</a>
+      </div>
+    </div>
+    <hr>
+    {% endfor %}
+    <div class="row d-flex justify-content-center">
+      <a href="{{ path('admin_skill_new')}}">Nouvelle compétence</a>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <h4>Mon parcours</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row"  style="height:40px;">
+      <div class="col font-weight-bold">
+        Nom de la formation
+      </div>
+      <div class="col font-weight-bold">
+        Établissement
+      </div>
+      <div class="col font-weight-bold">
+        Date
+      </div>
+      <div class="col font-weight-bold">
+        Action
+      </div>
+    </div>
+    <br>
+    {% for training in training %}
+
+    <div class="row">
+      <div class="col">
+        {{ training.name }}
+      </div>
+      <div class="col">
+        {{ training.structure }}
+      </div>
+      <div class="col">
+        {{ training.beginDate|date('Y-m-d') }} à {{ training.endDate|date('Y-m-d') }}
+      </div>
+      <div class="col">
+        <a href="{{ path('admin_training_edit', { 'id': training.id }) }}">Edit</a>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+  <br>
+
+  <div class="row d-flex justify-content-center">
+    <a href="{{ path('admin_training_new')}}">Nouvelle formation</a>
   </div>
-
-  {% for skill in skill %}
-
+  <br>
   <div class="row">
     <div class="col">
-      {{ skill.name }}
-    </div>
-    <div class="col">
-      {{ skill.description }}
-    </div>
-    <div class="col">
-      {% if skill.rating == 5 %}
-      <a href="#!" class="secondary-content"><i class="yellow-text material-icons left">grade</i>{{skill.rating}} / 5</a>
-      {% elseif skill.rating == 4 %}
-      <a href="#!" class="secondary-content"><i class="blue-text material-icons left">grade</i>{{skill.rating}} / 5</a>
-      {% elseif skill.rating == 3 %}
-      <a href="#!" class="secondary-content"><i class="green-text material-icons left">grade</i>{{skill.rating}} / 5</a>
-      {% elseif skill.rating == 2 %}
-      <a href="#!" class="secondary-content"><i class="orange-text material-icons left">grade</i>{{skill.rating}} / 5</a>
-      {% elseif skill.rating == 1 %}
-      <a href="#!" class="secondary-content"><i class="red-text material-icons left">grade</i>{{skill.rating}} / 5</a>
-      {% else %}
-      <p>rating non valide</p>
-      {% endif %}
-    </div>
-    <div class="col">
-      <a href="{{ path('admin_skill_edit', { 'id': skill.id }) }}">Edit</a>
+      <h4>Mes réalisations</h4>
     </div>
   </div>
-  <hr>
-{% endfor %}
-<div class="row d-flex justify-content-center">
-  <a href="{{ path('admin_skill_new')}}">Nouvelle compétence</a>
-</div>
-<br>
-<div class="row">
-  <div class="col">
-    <h4>Mon parcours</h4>
+  <br>
+  <div class="row"  style="height:40px;">
+    <div class="col font-weight-bold">
+      Nom
+    </div>
+    <div class="col font-weight-bold">
+      Description
+    </div>
+    <div class="col font-weight-bold">
+      Date
+    </div>
+    <div class="col font-weight-bold">
+      Action </div>
+    </div>
+
+    {% for production in production %}
+
+    <div class="row">
+      <div class="col">
+        {{ production.name }}
+      </div>
+      <div class="col">
+        {{ production.description }}
+      </div>
+      <div class="col">
+        {{ production.beginDate|date('Y-m-d') }} à {{ production.endDate|date('Y-m-d') }}
+      </div>
+      <div class="col">
+        <a href="{{ path('admin_production_edit', { 'id': production.id }) }}">Edit</a>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+  <div class="row d-flex justify-content-center">
+    <a href="{{ path('admin_production_new')}}">Nouvelle réalisation</a>
   </div>
 </div>
-</div>
+
+
 {% endblock %}
